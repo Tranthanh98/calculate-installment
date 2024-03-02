@@ -20,7 +20,7 @@ npm install installment-js
     60, // total of months Installment
     7, // annual interest rate
     [installmentType?], //(optional) installment type InstallmentType.ODGE for Outstanding debt gradually decreases and InstallmentType.PIDE for Principal and interest divided equally
-    [rounding] // (optional) rounding for amount, you can pass the number or use the constant Rounding.ZERO, Rounding.ONE, Rounding.TWO,...
+    [rounding?] // (optional) rounding for amount, you can pass the number or use the constant Rounding.ZERO, Rounding.ONE, Rounding.TWO,...
   );
 
 /*
