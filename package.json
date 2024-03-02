@@ -1,6 +1,6 @@
 {
   "name": "installment-js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "a library help to calculate installment",
   "main": "index.js",
   "scripts": {
