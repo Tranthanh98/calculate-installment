@@ -1,0 +1,26 @@
+{
+  "name": "installment-js",
+  "version": "1.0.0",
+  "description": "a library help to calculate installment",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node_modules/webpack/bin/webpack.js --mode production --watch --progress --hide-modules",
+    "build": "node_modules/webpack/bin/webpack.js --mode production --progress --hide-modules",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tranthanh98/calculate-installment.git"
+  },
+  "author": "trantienthanh2412@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tranthanh98/calculate-installment/issues"
+  },
+  "homepage": "https://github.com/Tranthanh98/calculate-installment#readme",
+  "devDependencies": {
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4"
+  }
+}
