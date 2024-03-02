@@ -1,18 +1,26 @@
 {
   "name": "installment-js",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "a library help to calculate installment",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -rf dist coverage",
     "dev": "node_modules/webpack/bin/webpack.js --mode production --watch --progress --hide-modules",
-    "build": "node_modules/webpack/bin/webpack.js --mode production --progress --hide-modules",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run clean && npm run build:installment && npm run min",
+    "build:installment": "rollup lib/installment.js --name installment --format umd --file dist/installment.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "min": "npm run min:installment",
+    "min:loan": "uglifyjs dist/installment.js -c -m -o dist/installment.min.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Tranthanh98/calculate-installment.git"
   },
-  "author": "trantienthanh2412@gmail.com",
+  "author": {
+    "name": "Thanh Tran",
+    "email": "trantienthanh2412@gmail.com",
+    "url": "https://tranthanh98.github.io/my-cv"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Tranthanh98/calculate-installment/issues"
@@ -22,5 +30,20 @@
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^5.90.3",
     "webpack-cli": "^5.1.4"
-  }
+  },
+  "keywords": [
+    "installment-js",
+    "nodejs",
+    "loan",
+    "calculator",
+    "loan-calculator",
+    "js",
+    "installments",
+    "interest",
+    "annuity",
+    "annuity-due",
+    "due",
+    "diminishing",
+    "calculate-installment"
+  ]
 }

@@ -14,7 +14,8 @@ npm install installment-js
 
 ```js
   const { calculateInstallment } = require("installment-js");
-  calculateInstallment(
+
+  const result = calculateInstallment(
     500000000, //amount
     60, // total of months Installment
     7, // annual interest rate
@@ -46,6 +47,7 @@ npm install installment-js
         month: 2
       },
       ...
+    ]
   }
 */
 
@@ -73,6 +75,12 @@ calculateInstallment(amount, months, rate, [installmentType?], [rounding?])
 | -------- | ----- | -------------------------------------- |
 | ODGD     | 0     | Outstanding debt gradually decreases   |
 | PIDE     | 1     | Principal and interest divided equally |
+
+- Outstanding debt gradually decreases(ODGD)
+  ![image](https://github.com/Tranthanh98/calculate-installment/assets/51749033/ed86422f-f369-4ed6-8538-7dddbb43ffa3)
+
+- Principal and interest divided equally (PIDE)
+  ![image](https://github.com/Tranthanh98/calculate-installment/assets/51749033/52616282-b3a1-4606-b308-8a4428af65dc)
 
 ### Rounding Constant
 
@@ -141,3 +149,7 @@ const result1 = calculateInstallment(
   Rounding.TWO
 );
 ```
+
+## Contributing
+
+Im open for contributors :).
