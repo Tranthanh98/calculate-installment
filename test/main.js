@@ -1,3 +1,3 @@
 const { calculateInstallment, InstallmentType } = require("../src");
 
-console.log(calculateInstallment(500000000, 60, 7, InstallmentType.PIDE));
+console.log(calculateInstallment(100000000, 60, 10, InstallmentType.PIDE));

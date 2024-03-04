@@ -23,57 +23,53 @@ function calculateInstallment(
   let totalInterest = 0;
   const details = [];
 
+  const avgRate = rate / 100 / 12;
+  const avgPaidPerMonth =
+    (copiedLoanAmount * avgRate * Math.pow(1 + avgRate, months)) /
+    (Math.pow(1 + avgRate, months) - 1);
+
   const payPerMonth = Math.round((loanAmount / months).toFixed(rounding));
-  const avgRate = Number((rate / 12).toFixed(4));
 
   let countMonth = 1;
   while (countMonth <= months) {
-    const interest = Math.round(
-      ((avgRate * loanAmount) / 100).toFixed(rounding)
+    const interest = Math.round((avgRate * loanAmount).toFixed(rounding));
+
+    const remaining = Math.round((loanAmount - payPerMonth).toFixed(rounding));
+
+    const originLoanPaid = Math.round(
+      (avgPaidPerMonth - interest).toFixed(rounding)
     );
 
-    totalInterest += interest;
-
-    const remaining = Math.round((loanAmount - payPerMonth).toFixed(2));
-    details.push({
+    let detail = {
       loanBeginingPeriod: loanAmount,
-      originLoanPaid: payPerMonth,
       interest,
-      totalPaid: Math.round((payPerMonth + interest).toFixed(rounding)),
-      loanEndingPeriod: remaining > 0 ? remaining : 0,
       month: countMonth,
-    });
+    };
 
-    loanAmount -= payPerMonth;
+    if (installmentType === InstallmentType.ODGD) {
+      detail = {
+        ...detail,
+        originLoanPaid: payPerMonth,
+        totalPaid: Math.round((payPerMonth + interest).toFixed(rounding)),
+        loanEndingPeriod: remaining > 0 ? remaining : 0,
+      };
+    } else {
+      detail = {
+        ...detail,
+        originLoanPaid,
+        totalPaid: Math.round(avgPaidPerMonth.toFixed(rounding)),
+        loanEndingPeriod: loanAmount - originLoanPaid,
+      };
+    }
+
+    details.push(detail);
+
+    totalInterest += interest;
+    loanAmount -= detail.originLoanPaid;
     countMonth++;
   }
 
   totalLoanAndInterest += totalInterest;
-
-  if (installmentType === InstallmentType.PIDE) {
-    const avg = Math.round((totalLoanAndInterest / months).toFixed(rounding));
-
-    let tempLoanBeginingPeriod = copiedLoanAmount;
-
-    for (let item of details) {
-      let tempOriginPaid = Math.round((avg - item.interest).toFixed(rounding));
-
-      item.originLoanPaid =
-        tempLoanBeginingPeriod < tempOriginPaid
-          ? tempLoanBeginingPeriod
-          : tempOriginPaid;
-
-      item.loanBeginingPeriod = tempLoanBeginingPeriod;
-      item.loanEndingPeriod =
-        tempLoanBeginingPeriod - item.originLoanPaid > 0
-          ? tempLoanBeginingPeriod - item.originLoanPaid
-          : 0;
-
-      item.totalPaid = item.originLoanPaid + item.interest;
-
-      tempLoanBeginingPeriod = item.loanEndingPeriod;
-    }
-  }
 
   return {
     loanAmount: copiedLoanAmount,
