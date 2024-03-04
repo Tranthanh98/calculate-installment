@@ -153,3 +153,10 @@ const result1 = calculateInstallment(
 ## Contributing
 
 Im open for contributors :).
+
+## Release History
+
+#### 2024-03-04 v1.0.7
+
+- Updated the formula for **rincipal and interest divided equally**. The formula for calculating the monthly payment for a loan in the annuity method is as follows:
+  `PMT = (P * r * (1 + r)^n) / ((1 + r)^n - 1)`
